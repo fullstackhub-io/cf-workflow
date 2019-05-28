@@ -1,0 +1,37 @@
+<!-- <div>
+    <mat-card>
+      <mat-card-header class="header">
+        <mat-card-title class="header_title"><i class="material-icons">security</i> Manage Site Content</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="card_cntnt">
+        <div>
+          <div>
+            <button [routerLink]="['manageright']" mat-button color="primary"><i class="material-icons">right</i>    Right Management</button>
+          </div>
+          <hr>
+          <div>
+            <button [routerLink]="['managerole']" mat-button color="primary"><i class="material-icons">role</i>    Role Messages</button>
+          </div>
+          <hr>
+          <div>
+              <button [routerLink]="['manageuser']" mat-button color="primary"><i class="material-icons">user</i>    User Management</button>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div> -->
+
+
+<div>
+  <mat-tab-group>
+    <mat-tab label="Manage Rights">
+      <app-right-list></app-right-list>
+    </mat-tab>
+    <mat-tab label="Manage Role">
+      <app-role-list></app-role-list>
+    </mat-tab>
+    <mat-tab label="Manage User">
+      <app-user-list></app-user-list>
+    </mat-tab>
+  </mat-tab-group>
+</div>

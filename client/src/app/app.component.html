@@ -1,0 +1,12 @@
+<div>
+    <div>
+        <mat-card>
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title> Content Forward - Workflow</mat-card-title>
+                <img *ngIf="_authService.isLoggenIn()" src="https://image.flaticon.com/icons/png/512/339/339737.png" class="logout" alt="Logout" (click)="_authService.logout()">
+            </mat-card-header>
+        </mat-card>
+    </div>
+    <router-outlet></router-outlet>
+</div>
