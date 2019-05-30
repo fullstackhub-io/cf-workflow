@@ -30,7 +30,7 @@ export class WorkflowController {
             if (workflow == null)
                 res.json({ success: false });
             else
-                res.json({ success: true, data: workflow._id });
+                res.json({ success: true, data: workflow });
         });
     }
 

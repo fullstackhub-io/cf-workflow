@@ -15,8 +15,9 @@ export class WorkFlowComponent implements OnInit {
 
   stepFrm: FormGroup;
   roles: IRole[];
-
   dbops: DBOperation;
+
+  steps: string[] = ['author-response', 'initial-comment-prem-decision', 'final-decision', 'final-decision-review', 'next-iteration', 'author-response-2', 'side-by-side', 'nces-decision', 'waiting-cso-approval', 'waiting-owner-approval', 'waiting-qc-approval', 'waiting-wm-approval', 'sign-off'];
 
   constructor(private _fb: FormBuilder, private _roleService: RoleService, private _dataService: WorkflowService, private _util: Util) { }
 
@@ -32,57 +33,75 @@ export class WorkFlowComponent implements OnInit {
       isEmailRequired: [false, Validators.required],
       emailMessage: ['']
     });
+    this.loadStepData(this.steps[0]);
+  }
 
+  getSelectedStep(selectedStep) {
+    debugger;
+    this.loadStepData(this.steps[selectedStep.selectedIndex]);
+  }
+
+  loadStepData(stepCode: string) {
+    this._dataService.getbyStepCode(stepCode).subscribe(
+      (data: any) => {
+        if (data.success) {
+          this.stepFrm.controls["assignees"].setValue(data.data.assignees);
+          this.stepFrm.controls["isEmailRequired"].setValue(data.data.isEmailRequired);
+          this.stepFrm.controls["emailMessage"].setValue(data.data.emailMessage);
+          this.stepFrm.controls["_id"].setValue(data.data._id);
+        }
+        else {
+          this.stepFrm.controls["assignees"].setValue('');
+          this.stepFrm.controls["isEmailRequired"].setValue('');
+          this.stepFrm.controls["emailMessage"].setValue('');
+          this.stepFrm.controls["_id"].setValue('');
+        }
+      }
+    )
   }
 
   onSubmit(formData: any, stepName: string, stepCode: string, seqNum: number) {
-
+    debugger
     formData.value['stepName'] = stepName;
     formData.value['stepCode'] = stepCode;
     formData.value['seqNum'] = seqNum;
-    this._dataService.getbyStepCode(stepCode).subscribe(
-      (res: any) => {
-        if (res.success) {
-          this.dbops = DBOperation.update;
-          formData.value['_id'] = res.data;
-        }
-        else
-          this.dbops = DBOperation.create;
 
-        switch (this.dbops) {
-          case DBOperation.create:
-            delete formData.value._id;
-            this._dataService.post(formData.value).subscribe(
-              data => {
-                if (data.success == true) //Success
-                {
-                  this._util.openSnackBar(data.msg, "Success");
-                }
-                else {
-                  this._util.openSnackBar(JSON.stringify(data.msg), "Error");
-                }
-              },
-              () => {
-              });
-            break;
-          case DBOperation.update:
-            this._dataService.put(formData.value, formData.value._id).subscribe(
-              data => {
-                if (data.success == true) //Success
-                {
-                  this._util.openSnackBar(data.msg, "Success");
-                }
-                else {
-                  this._util.openSnackBar(JSON.stringify(data.msg), "Error");
-                }
-              },
-              () => {
-              });
-            break;
-        }
+    if (formData.value._id != "" && formData.value._id != null)
+      this.dbops = DBOperation.update;
+    else
+      this.dbops = DBOperation.create;
 
-      }
-    )
+    switch (this.dbops) {
+      case DBOperation.create:
+        delete formData.value._id;
+        this._dataService.post(formData.value).subscribe(
+          data => {
+            if (data.success == true) //Success
+            {
+              this._util.openSnackBar(data.msg, "Success");
+            }
+            else {
+              this._util.openSnackBar(JSON.stringify(data.msg), "Error");
+            }
+          },
+          () => {
+          });
+        break;
+      case DBOperation.update:
+        this._dataService.put(formData.value, formData.value._id).subscribe(
+          data => {
+            if (data.success == true) //Success
+            {
+              this._util.openSnackBar(data.msg, "Success");
+            }
+            else {
+              this._util.openSnackBar(JSON.stringify(data.msg), "Error");
+            }
+          },
+          () => {
+          });
+        break;
+    }
 
   }
 

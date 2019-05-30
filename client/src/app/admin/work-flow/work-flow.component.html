@@ -2,12 +2,13 @@
     <mat-card-header class="header">
         <mat-card-title class="header_title">Workflow Steps</mat-card-title>
     </mat-card-header>
-    <mat-vertical-stepper [linear]="isLinear" #stepper>
+    <mat-vertical-stepper [linear]="isLinear" #stepper (selectionChange)="getSelectedStep($event)">
         <mat-step>
             <ng-template matStepLabel>Author Response</ng-template>
             <mat-card style="width: 50%">
                 <mat-card-content class="card_cntnt">
-                    <form novalidate (ngSubmit)="onSubmit(stepFrm,'Author Response','author-response',1)" [formGroup]="stepFrm">
+                    <form novalidate (ngSubmit)="onSubmit(stepFrm,'Author Response','author-response',1)"
+                        [formGroup]="stepFrm">
                         <div mat-dialog-content class="md-dialog-container">
 
                             <div class="form-group">
@@ -45,7 +46,8 @@
                         <mat-dialog-actions class="mat-dialog-footer" align="end">
                             <button color="warn" type="button" mat-raised-button
                                 (click)="dialogRef.close()">Cancel</button>&nbsp;
-                            <button type="submit" color="primary" [disabled]="stepFrm.invalid" mat-raised-button>Save</button>
+                            <button type="submit" color="primary" [disabled]="stepFrm.invalid"
+                                mat-raised-button>Save</button>
                         </mat-dialog-actions>
                     </form>
                 </mat-card-content>
@@ -55,11 +57,14 @@
             <ng-template matStepLabel>Initial Comment and Preliminary Decision</ng-template>
             <mat-card style="width: 50%">
                 <mat-card-content class="card_cntnt">
-                    <form novalidate (ngSubmit)="onSubmit(stepFrm,'Initial Comment and Preliminary Decision','initial-comment-prem-decision',2)" [formGroup]="stepFrm">
+                    <form novalidate
+                        (ngSubmit)="onSubmit(stepFrm,'Initial Comment and Preliminary Decision','initial-comment-prem-decision',2)"
+                        [formGroup]="stepFrm">
                         <div mat-dialog-content class="md-dialog-container">
                             <div class="form-group">
                                 <mat-form-field class="frm-ctrl">
-                                    <input matInput placeholder="Step Name" formControlName="stepName" value="Initial Comment and Preliminary Decision">
+                                    <input matInput placeholder="Step Name" formControlName="stepName"
+                                        value="Initial Comment and Preliminary Decision">
                                 </mat-form-field>
                             </div>
                             <div class="form-group">
@@ -91,7 +96,8 @@
                         <mat-dialog-actions class="mat-dialog-footer" align="end">
                             <button color="warn" type="button" mat-raised-button
                                 (click)="dialogRef.close()">Cancel</button>&nbsp;
-                            <button type="submit" color="primary" [disabled]="stepFrm.invalid" mat-raised-button>Save</button>
+                            <button type="submit" color="primary" [disabled]="stepFrm.invalid"
+                                mat-raised-button>Save</button>
                         </mat-dialog-actions>
                     </form>
                 </mat-card-content>
@@ -101,7 +107,8 @@
             <ng-template matStepLabel>Final Decision</ng-template>
             <mat-card style="width: 50%">
                 <mat-card-content class="card_cntnt">
-                    <form novalidate (ngSubmit)="onSubmit(stepFrm,'Final Decision','final-decision',3)" [formGroup]="stepFrm">
+                    <form novalidate (ngSubmit)="onSubmit(stepFrm,'Final Decision','final-decision',3)"
+                        [formGroup]="stepFrm">
                         <div mat-dialog-content class="md-dialog-container">
 
                             <div class="form-group">
@@ -139,7 +146,8 @@
                         <mat-dialog-actions class="mat-dialog-footer" align="end">
                             <button color="warn" type="button" mat-raised-button
                                 (click)="dialogRef.close()">Cancel</button>&nbsp;
-                            <button type="submit" color="primary" [disabled]="stepFrm.invalid" mat-raised-button>Save</button>
+                            <button type="submit" color="primary" [disabled]="stepFrm.invalid"
+                                mat-raised-button>Save</button>
                         </mat-dialog-actions>
                     </form>
                 </mat-card-content>
@@ -149,7 +157,8 @@
             <ng-template matStepLabel>Final Decision Review</ng-template>
             <mat-card style="width: 50%">
                 <mat-card-content class="card_cntnt">
-                    <form novalidate (ngSubmit)="onSubmit(stepFrm,'Final Decision Review','final-decision-review',4)" [formGroup]="stepFrm">
+                    <form novalidate (ngSubmit)="onSubmit(stepFrm,'Final Decision Review','final-decision-review',4)"
+                        [formGroup]="stepFrm">
                         <div mat-dialog-content class="md-dialog-container">
 
                             <div class="form-group">
@@ -187,7 +196,8 @@
                         <mat-dialog-actions class="mat-dialog-footer" align="end">
                             <button color="warn" type="button" mat-raised-button
                                 (click)="dialogRef.close()">Cancel</button>&nbsp;
-                            <button type="submit" color="primary" [disabled]="stepFrm.invalid" mat-raised-button>Save</button>
+                            <button type="submit" color="primary" [disabled]="stepFrm.invalid"
+                                mat-raised-button>Save</button>
                         </mat-dialog-actions>
                     </form>
                 </mat-card-content>
@@ -197,7 +207,8 @@
             <ng-template matStepLabel>Next Iteration</ng-template>
             <mat-card style="width: 50%">
                 <mat-card-content class="card_cntnt">
-                    <form novalidate (ngSubmit)="onSubmit(stepFrm,'Next Iteration','next-iteration',5)" [formGroup]="stepFrm">
+                    <form novalidate (ngSubmit)="onSubmit(stepFrm,'Next Iteration','next-iteration',5)"
+                        [formGroup]="stepFrm">
                         <div mat-dialog-content class="md-dialog-container">
 
                             <div class="form-group">
@@ -235,7 +246,8 @@
                         <mat-dialog-actions class="mat-dialog-footer" align="end">
                             <button color="warn" type="button" mat-raised-button
                                 (click)="dialogRef.close()">Cancel</button>&nbsp;
-                            <button type="submit" color="primary" [disabled]="stepFrm.invalid" mat-raised-button>Save</button>
+                            <button type="submit" color="primary" [disabled]="stepFrm.invalid"
+                                mat-raised-button>Save</button>
                         </mat-dialog-actions>
                     </form>
                 </mat-card-content>
@@ -245,7 +257,8 @@
             <ng-template matStepLabel>Author Response</ng-template>
             <mat-card style="width: 50%">
                 <mat-card-content class="card_cntnt">
-                    <form novalidate (ngSubmit)="onSubmit(stepFrm,'Author Response','author-response-2',6)" [formGroup]="stepFrm">
+                    <form novalidate (ngSubmit)="onSubmit(stepFrm,'Author Response','author-response-2',6)"
+                        [formGroup]="stepFrm">
                         <div mat-dialog-content class="md-dialog-container">
 
                             <div class="form-group">
@@ -283,7 +296,8 @@
                         <mat-dialog-actions class="mat-dialog-footer" align="end">
                             <button color="warn" type="button" mat-raised-button
                                 (click)="dialogRef.close()">Cancel</button>&nbsp;
-                            <button type="submit" color="primary" [disabled]="stepFrm.invalid" mat-raised-button>Save</button>
+                            <button type="submit" color="primary" [disabled]="stepFrm.invalid"
+                                mat-raised-button>Save</button>
                         </mat-dialog-actions>
                     </form>
                 </mat-card-content>
@@ -293,7 +307,8 @@
             <ng-template matStepLabel>Side by Side</ng-template>
             <mat-card style="width: 50%">
                 <mat-card-content class="card_cntnt">
-                    <form novalidate (ngSubmit)="onSubmit(stepFrm,'Side by Side','side-by-side',7)" [formGroup]="stepFrm">
+                    <form novalidate (ngSubmit)="onSubmit(stepFrm,'Side by Side','side-by-side',7)"
+                        [formGroup]="stepFrm">
                         <div mat-dialog-content class="md-dialog-container">
 
                             <div class="form-group">
@@ -331,7 +346,8 @@
                         <mat-dialog-actions class="mat-dialog-footer" align="end">
                             <button color="warn" type="button" mat-raised-button
                                 (click)="dialogRef.close()">Cancel</button>&nbsp;
-                            <button type="submit" color="primary" [disabled]="stepFrm.invalid" mat-raised-button>Save</button>
+                            <button type="submit" color="primary" [disabled]="stepFrm.invalid"
+                                mat-raised-button>Save</button>
                         </mat-dialog-actions>
                     </form>
                 </mat-card-content>
@@ -341,7 +357,8 @@
             <ng-template matStepLabel>NCES Decision</ng-template>
             <mat-card style="width: 50%">
                 <mat-card-content class="card_cntnt">
-                    <form novalidate (ngSubmit)="onSubmit(stepFrm,'NCES Decision','nces-decision',8)" [formGroup]="stepFrm">
+                    <form novalidate (ngSubmit)="onSubmit(stepFrm,'NCES Decision','nces-decision',8)"
+                        [formGroup]="stepFrm">
                         <div mat-dialog-content class="md-dialog-container">
 
                             <div class="form-group">
@@ -379,7 +396,8 @@
                         <mat-dialog-actions class="mat-dialog-footer" align="end">
                             <button color="warn" type="button" mat-raised-button
                                 (click)="dialogRef.close()">Cancel</button>&nbsp;
-                            <button type="submit" color="primary" [disabled]="stepFrm.invalid" mat-raised-button>Save</button>
+                            <button type="submit" color="primary" [disabled]="stepFrm.invalid"
+                                mat-raised-button>Save</button>
                         </mat-dialog-actions>
                     </form>
                 </mat-card-content>
@@ -389,7 +407,8 @@
             <ng-template matStepLabel>Waiting for CSO Approval</ng-template>
             <mat-card style="width: 50%">
                 <mat-card-content class="card_cntnt">
-                    <form novalidate (ngSubmit)="onSubmit(stepFrm,'Waiting for CSO Approval','waiting-cso-approval',9)" [formGroup]="stepFrm">
+                    <form novalidate (ngSubmit)="onSubmit(stepFrm,'Waiting for CSO Approval','waiting-cso-approval',9)"
+                        [formGroup]="stepFrm">
                         <div mat-dialog-content class="md-dialog-container">
 
                             <div class="form-group">
@@ -427,7 +446,8 @@
                         <mat-dialog-actions class="mat-dialog-footer" align="end">
                             <button color="warn" type="button" mat-raised-button
                                 (click)="dialogRef.close()">Cancel</button>&nbsp;
-                            <button type="submit" color="primary" [disabled]="stepFrm.invalid" mat-raised-button>Save</button>
+                            <button type="submit" color="primary" [disabled]="stepFrm.invalid"
+                                mat-raised-button>Save</button>
                         </mat-dialog-actions>
                     </form>
                 </mat-card-content>
@@ -437,7 +457,9 @@
             <ng-template matStepLabel>Waiting for Owner Approval</ng-template>
             <mat-card style="width: 50%">
                 <mat-card-content class="card_cntnt">
-                    <form novalidate (ngSubmit)="onSubmit(stepFrm,'Waiting for Owner Approval','waiting-owner-approval',10)" [formGroup]="stepFrm">
+                    <form novalidate
+                        (ngSubmit)="onSubmit(stepFrm,'Waiting for Owner Approval','waiting-owner-approval',10)"
+                        [formGroup]="stepFrm">
                         <div mat-dialog-content class="md-dialog-container">
 
                             <div class="form-group">
@@ -475,7 +497,8 @@
                         <mat-dialog-actions class="mat-dialog-footer" align="end">
                             <button color="warn" type="button" mat-raised-button
                                 (click)="dialogRef.close()">Cancel</button>&nbsp;
-                            <button type="submit" color="primary" [disabled]="stepFrm.invalid" mat-raised-button>Save</button>
+                            <button type="submit" color="primary" [disabled]="stepFrm.invalid"
+                                mat-raised-button>Save</button>
                         </mat-dialog-actions>
                     </form>
                 </mat-card-content>
@@ -485,7 +508,8 @@
             <ng-template matStepLabel>Waiting for QC Approval</ng-template>
             <mat-card style="width: 50%">
                 <mat-card-content class="card_cntnt">
-                    <form novalidate (ngSubmit)="onSubmit(stepFrm,'Waiting for QC Approval','waiting-qc-approval',11)" [formGroup]="stepFrm">
+                    <form novalidate (ngSubmit)="onSubmit(stepFrm,'Waiting for QC Approval','waiting-qc-approval',11)"
+                        [formGroup]="stepFrm">
                         <div mat-dialog-content class="md-dialog-container">
 
                             <div class="form-group">
@@ -523,7 +547,8 @@
                         <mat-dialog-actions class="mat-dialog-footer" align="end">
                             <button color="warn" type="button" mat-raised-button
                                 (click)="dialogRef.close()">Cancel</button>&nbsp;
-                            <button type="submit" color="primary" [disabled]="stepFrm.invalid" mat-raised-button>Save</button>
+                            <button type="submit" color="primary" [disabled]="stepFrm.invalid"
+                                mat-raised-button>Save</button>
                         </mat-dialog-actions>
                     </form>
                 </mat-card-content>
@@ -533,7 +558,8 @@
             <ng-template matStepLabel>Waiting for WM Approval</ng-template>
             <mat-card style="width: 50%">
                 <mat-card-content class="card_cntnt">
-                    <form novalidate (ngSubmit)="onSubmit(stepFrm,'Waiting for WM Approval','waiting-wm-approval',12)" [formGroup]="stepFrm">
+                    <form novalidate (ngSubmit)="onSubmit(stepFrm,'Waiting for WM Approval','waiting-wm-approval',12)"
+                        [formGroup]="stepFrm">
                         <div mat-dialog-content class="md-dialog-container">
 
                             <div class="form-group">
@@ -571,7 +597,8 @@
                         <mat-dialog-actions class="mat-dialog-footer" align="end">
                             <button color="warn" type="button" mat-raised-button
                                 (click)="dialogRef.close()">Cancel</button>&nbsp;
-                            <button type="submit" color="primary" [disabled]="stepFrm.invalid" mat-raised-button>Save</button>
+                            <button type="submit" color="primary" [disabled]="stepFrm.invalid"
+                                mat-raised-button>Save</button>
                         </mat-dialog-actions>
                     </form>
                 </mat-card-content>
@@ -586,14 +613,12 @@
 
                             <div class="form-group">
                                 <mat-form-field class="frm-ctrl">
-                                    <input matInput placeholder="Step Name" formControlName="stepName"
-                                        value="Sign Off">
+                                    <input matInput placeholder="Step Name" formControlName="stepName" value="Sign Off">
                                 </mat-form-field>
                             </div>
                             <div class="form-group">
                                 <mat-form-field class="frm-ctrl">
-                                    <input matInput placeholder="Step Code" formControlName="stepCode"
-                                        value="sign-off">
+                                    <input matInput placeholder="Step Code" formControlName="stepCode" value="sign-off">
                                 </mat-form-field>
                             </div>
                             <div class="form-group">
@@ -619,7 +644,8 @@
                         <mat-dialog-actions class="mat-dialog-footer" align="end">
                             <button color="warn" type="button" mat-raised-button
                                 (click)="dialogRef.close()">Cancel</button>&nbsp;
-                            <button type="submit" color="primary" [disabled]="stepFrm.invalid" mat-raised-button>Save</button>
+                            <button type="submit" color="primary" [disabled]="stepFrm.invalid"
+                                mat-raised-button>Save</button>
                         </mat-dialog-actions>
                     </form>
                 </mat-card-content>
