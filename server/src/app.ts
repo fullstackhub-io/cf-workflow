@@ -6,6 +6,7 @@ import cors from "cors";
 import { RoleRoutes } from "./routes/role-route";
 import { RightRoutes } from "./routes/right-route";
 import { UserRoutes } from "./routes/user-route";
+import { WorkflowRoutes } from "./routes/workflow-route";
 
 class App {
 
@@ -13,16 +14,18 @@ class App {
     public rightRoute: RightRoutes = new RightRoutes();
     public roleRoutes: RoleRoutes = new RoleRoutes();
     public userRoutes: UserRoutes = new UserRoutes();
+    public workflowRoutes: WorkflowRoutes = new WorkflowRoutes();
 
     public mongoUrl: string = 'mongodb://naep:password1@ds259586.mlab.com:59586/cf-workflow';
 
     constructor() {
         this.config();
         this.mongoSetup();
-        
+
         this.rightRoute.routes(this.app);
         this.roleRoutes.routes(this.app);
         this.userRoutes.routes(this.app);
+        this.workflowRoutes.routes(this.app);
     }
 
     private config(): void {

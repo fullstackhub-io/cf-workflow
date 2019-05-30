@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   right_api:`${api_url}/right`,
   role_api:`${api_url}/role`,
-  user_api:`${api_url}/user`
+  user_api:`${api_url}/user`,
+  workflow_api: `${api_url}/wfstep`,
 };
 
 /*

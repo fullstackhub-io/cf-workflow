@@ -1,48 +1,631 @@
 <mat-card>
-    <mat-card-header>
-    Workflow Steps
+    <mat-card-header class="header">
+        <mat-card-title class="header_title">Workflow Steps</mat-card-title>
     </mat-card-header>
-  <mat-vertical-stepper [linear]="isLinear" #stepper>
-    <mat-step [stepControl]="firstFormGroup">
-        <ng-template matStepLabel>Author Response</ng-template>
-    </mat-step>
-    <mat-step [stepControl]="secondFormGroup">
-        <ng-template matStepLabel>Initial Comment and Preliminary Decision</ng-template>
-    </mat-step>
-    <mat-step>
-        <ng-template matStepLabel>Final Decision</ng-template>
-    </mat-step>
-    <mat-step>
-        <ng-template matStepLabel>Final Decision Review</ng-template>
-    </mat-step>
-    <mat-step>
-        <ng-template matStepLabel>Next Iteration</ng-template>
-    </mat-step>
-    <mat-step>
-        <ng-template matStepLabel>Author Response</ng-template>
-    </mat-step>
-    <mat-step>
-        <ng-template matStepLabel>Side by Side</ng-template>
-    </mat-step>
-    <mat-step>
-        <ng-template matStepLabel>NCES Decision</ng-template>
-    </mat-step>
-    <mat-step>
-        <ng-template matStepLabel>Waiting for CSO Approval</ng-template>
-    </mat-step>
-    <mat-step>
-        <ng-template matStepLabel>Waiting for Owner Approval</ng-template>
-    </mat-step>
-    <mat-step>
-        <ng-template matStepLabel>Waiting for QC Approval</ng-template>
-    </mat-step>
-    <mat-step>
-        <ng-template matStepLabel>Waiting for WM Approval</ng-template>
-    </mat-step>
-    <mat-step>
-        <ng-template matStepLabel>Sign Off</ng-template>
-    </mat-step>
-  </mat-vertical-stepper>
+    <mat-vertical-stepper [linear]="isLinear" #stepper>
+        <mat-step>
+            <ng-template matStepLabel>Author Response</ng-template>
+            <mat-card style="width: 50%">
+                <mat-card-content class="card_cntnt">
+                    <form novalidate (ngSubmit)="onSubmit(stepFrm,'Author Response','author-response',1)" [formGroup]="stepFrm">
+                        <div mat-dialog-content class="md-dialog-container">
+
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <input matInput placeholder="Step Name" formControlName="stepName"
+                                        value="Author Response">
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <input matInput placeholder="Step Code" formControlName="stepCode"
+                                        value="author-response">
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <mat-select placeholder="Select Roles" class="frm-ctrl" formControlName="assignees"
+                                        multiple>
+                                        <mat-option *ngFor="let role of roles" [value]="role.roleCode">
+                                            {{ role.roleName }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-checkbox formControlName="isEmailRequired">is Email Required</mat-checkbox>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <textarea placeholder="Email Message" matInput formControlName="emailMessage"
+                                        rows="5"></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <mat-dialog-actions class="mat-dialog-footer" align="end">
+                            <button color="warn" type="button" mat-raised-button
+                                (click)="dialogRef.close()">Cancel</button>&nbsp;
+                            <button type="submit" color="primary" [disabled]="stepFrm.invalid" mat-raised-button>Save</button>
+                        </mat-dialog-actions>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Initial Comment and Preliminary Decision</ng-template>
+            <mat-card style="width: 50%">
+                <mat-card-content class="card_cntnt">
+                    <form novalidate (ngSubmit)="onSubmit(stepFrm,'Initial Comment and Preliminary Decision','initial-comment-prem-decision',2)" [formGroup]="stepFrm">
+                        <div mat-dialog-content class="md-dialog-container">
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <input matInput placeholder="Step Name" formControlName="stepName" value="Initial Comment and Preliminary Decision">
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <input matInput placeholder="Step Code" formControlName="stepCode"
+                                        value="initial-comment-prem-decision">
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <mat-select placeholder="Select Roles" class="frm-ctrl" formControlName="assignees"
+                                        multiple>
+                                        <mat-option *ngFor="let role of roles" [value]="role.roleCode">
+                                            {{ role.roleName }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-checkbox formControlName="isEmailRequired">is Email Required</mat-checkbox>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <textarea placeholder="Email Message" matInput formControlName="emailMessage"
+                                        rows="5"></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <mat-dialog-actions class="mat-dialog-footer" align="end">
+                            <button color="warn" type="button" mat-raised-button
+                                (click)="dialogRef.close()">Cancel</button>&nbsp;
+                            <button type="submit" color="primary" [disabled]="stepFrm.invalid" mat-raised-button>Save</button>
+                        </mat-dialog-actions>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Final Decision</ng-template>
+            <mat-card style="width: 50%">
+                <mat-card-content class="card_cntnt">
+                    <form novalidate (ngSubmit)="onSubmit(stepFrm,'Final Decision','final-decision',3)" [formGroup]="stepFrm">
+                        <div mat-dialog-content class="md-dialog-container">
+
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <input matInput placeholder="Step Name" formControlName="stepName"
+                                        value="Final Decision">
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <input matInput placeholder="Step Code" formControlName="stepCode"
+                                        value="final-decision">
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <mat-select placeholder="Select Roles" class="frm-ctrl" formControlName="assignees"
+                                        multiple>
+                                        <mat-option *ngFor="let role of roles" [value]="role.roleCode">
+                                            {{ role.roleName }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-checkbox formControlName="isEmailRequired">is Email Required</mat-checkbox>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <textarea placeholder="Email Message" matInput formControlName="emailMessage"
+                                        rows="5"></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <mat-dialog-actions class="mat-dialog-footer" align="end">
+                            <button color="warn" type="button" mat-raised-button
+                                (click)="dialogRef.close()">Cancel</button>&nbsp;
+                            <button type="submit" color="primary" [disabled]="stepFrm.invalid" mat-raised-button>Save</button>
+                        </mat-dialog-actions>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Final Decision Review</ng-template>
+            <mat-card style="width: 50%">
+                <mat-card-content class="card_cntnt">
+                    <form novalidate (ngSubmit)="onSubmit(stepFrm,'Final Decision Review','final-decision-review',4)" [formGroup]="stepFrm">
+                        <div mat-dialog-content class="md-dialog-container">
+
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <input matInput placeholder="Step Name" formControlName="stepName"
+                                        value="Final Decision Review">
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <input matInput placeholder="Step Code" formControlName="stepCode"
+                                        value="final-decision-review">
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <mat-select placeholder="Select Roles" class="frm-ctrl" formControlName="assignees"
+                                        multiple>
+                                        <mat-option *ngFor="let role of roles" [value]="role.roleCode">
+                                            {{ role.roleName }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-checkbox formControlName="isEmailRequired">is Email Required</mat-checkbox>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <textarea placeholder="Email Message" matInput formControlName="emailMessage"
+                                        rows="5"></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <mat-dialog-actions class="mat-dialog-footer" align="end">
+                            <button color="warn" type="button" mat-raised-button
+                                (click)="dialogRef.close()">Cancel</button>&nbsp;
+                            <button type="submit" color="primary" [disabled]="stepFrm.invalid" mat-raised-button>Save</button>
+                        </mat-dialog-actions>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Next Iteration</ng-template>
+            <mat-card style="width: 50%">
+                <mat-card-content class="card_cntnt">
+                    <form novalidate (ngSubmit)="onSubmit(stepFrm,'Next Iteration','next-iteration',5)" [formGroup]="stepFrm">
+                        <div mat-dialog-content class="md-dialog-container">
+
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <input matInput placeholder="Step Name" formControlName="stepName"
+                                        value="Next Iteration">
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <input matInput placeholder="Step Code" formControlName="stepCode"
+                                        value="next-iteration">
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <mat-select placeholder="Select Roles" class="frm-ctrl" formControlName="assignees"
+                                        multiple>
+                                        <mat-option *ngFor="let role of roles" [value]="role.roleCode">
+                                            {{ role.roleName }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-checkbox formControlName="isEmailRequired">is Email Required</mat-checkbox>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <textarea placeholder="Email Message" matInput formControlName="emailMessage"
+                                        rows="5"></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <mat-dialog-actions class="mat-dialog-footer" align="end">
+                            <button color="warn" type="button" mat-raised-button
+                                (click)="dialogRef.close()">Cancel</button>&nbsp;
+                            <button type="submit" color="primary" [disabled]="stepFrm.invalid" mat-raised-button>Save</button>
+                        </mat-dialog-actions>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Author Response</ng-template>
+            <mat-card style="width: 50%">
+                <mat-card-content class="card_cntnt">
+                    <form novalidate (ngSubmit)="onSubmit(stepFrm,'Author Response','author-response-2',6)" [formGroup]="stepFrm">
+                        <div mat-dialog-content class="md-dialog-container">
+
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <input matInput placeholder="Step Name" formControlName="stepName"
+                                        value="Author Response">
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <input matInput placeholder="Step Code" formControlName="stepCode"
+                                        value="author-response-2">
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <mat-select placeholder="Select Roles" class="frm-ctrl" formControlName="assignees"
+                                        multiple>
+                                        <mat-option *ngFor="let role of roles" [value]="role.roleCode">
+                                            {{ role.roleName }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-checkbox formControlName="isEmailRequired">is Email Required</mat-checkbox>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <textarea placeholder="Email Message" matInput formControlName="emailMessage"
+                                        rows="5"></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <mat-dialog-actions class="mat-dialog-footer" align="end">
+                            <button color="warn" type="button" mat-raised-button
+                                (click)="dialogRef.close()">Cancel</button>&nbsp;
+                            <button type="submit" color="primary" [disabled]="stepFrm.invalid" mat-raised-button>Save</button>
+                        </mat-dialog-actions>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Side by Side</ng-template>
+            <mat-card style="width: 50%">
+                <mat-card-content class="card_cntnt">
+                    <form novalidate (ngSubmit)="onSubmit(stepFrm,'Side by Side','side-by-side',7)" [formGroup]="stepFrm">
+                        <div mat-dialog-content class="md-dialog-container">
+
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <input matInput placeholder="Step Name" formControlName="stepName"
+                                        value="Side by Side">
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <input matInput placeholder="Step Code" formControlName="stepCode"
+                                        value="side-by-side">
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <mat-select placeholder="Select Roles" class="frm-ctrl" formControlName="assignees"
+                                        multiple>
+                                        <mat-option *ngFor="let role of roles" [value]="role.roleCode">
+                                            {{ role.roleName }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-checkbox formControlName="isEmailRequired">is Email Required</mat-checkbox>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <textarea placeholder="Email Message" matInput formControlName="emailMessage"
+                                        rows="5"></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <mat-dialog-actions class="mat-dialog-footer" align="end">
+                            <button color="warn" type="button" mat-raised-button
+                                (click)="dialogRef.close()">Cancel</button>&nbsp;
+                            <button type="submit" color="primary" [disabled]="stepFrm.invalid" mat-raised-button>Save</button>
+                        </mat-dialog-actions>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>NCES Decision</ng-template>
+            <mat-card style="width: 50%">
+                <mat-card-content class="card_cntnt">
+                    <form novalidate (ngSubmit)="onSubmit(stepFrm,'NCES Decision','nces-decision',8)" [formGroup]="stepFrm">
+                        <div mat-dialog-content class="md-dialog-container">
+
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <input matInput placeholder="Step Name" formControlName="stepName"
+                                        value="NCES Decision">
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <input matInput placeholder="Step Code" formControlName="stepCode"
+                                        value="nces-decision">
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <mat-select placeholder="Select Roles" class="frm-ctrl" formControlName="assignees"
+                                        multiple>
+                                        <mat-option *ngFor="let role of roles" [value]="role.roleCode">
+                                            {{ role.roleName }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-checkbox formControlName="isEmailRequired">is Email Required</mat-checkbox>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <textarea placeholder="Email Message" matInput formControlName="emailMessage"
+                                        rows="5"></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <mat-dialog-actions class="mat-dialog-footer" align="end">
+                            <button color="warn" type="button" mat-raised-button
+                                (click)="dialogRef.close()">Cancel</button>&nbsp;
+                            <button type="submit" color="primary" [disabled]="stepFrm.invalid" mat-raised-button>Save</button>
+                        </mat-dialog-actions>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Waiting for CSO Approval</ng-template>
+            <mat-card style="width: 50%">
+                <mat-card-content class="card_cntnt">
+                    <form novalidate (ngSubmit)="onSubmit(stepFrm,'Waiting for CSO Approval','waiting-cso-approval',9)" [formGroup]="stepFrm">
+                        <div mat-dialog-content class="md-dialog-container">
+
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <input matInput placeholder="Step Name" formControlName="stepName"
+                                        value="Waiting for CSO Approval">
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <input matInput placeholder="Step Code" formControlName="stepCode"
+                                        value="waiting-cso-approval">
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <mat-select placeholder="Select Roles" class="frm-ctrl" formControlName="assignees"
+                                        multiple>
+                                        <mat-option *ngFor="let role of roles" [value]="role.roleCode">
+                                            {{ role.roleName }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-checkbox formControlName="isEmailRequired">is Email Required</mat-checkbox>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <textarea placeholder="Email Message" matInput formControlName="emailMessage"
+                                        rows="5"></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <mat-dialog-actions class="mat-dialog-footer" align="end">
+                            <button color="warn" type="button" mat-raised-button
+                                (click)="dialogRef.close()">Cancel</button>&nbsp;
+                            <button type="submit" color="primary" [disabled]="stepFrm.invalid" mat-raised-button>Save</button>
+                        </mat-dialog-actions>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Waiting for Owner Approval</ng-template>
+            <mat-card style="width: 50%">
+                <mat-card-content class="card_cntnt">
+                    <form novalidate (ngSubmit)="onSubmit(stepFrm,'Waiting for Owner Approval','waiting-owner-approval',10)" [formGroup]="stepFrm">
+                        <div mat-dialog-content class="md-dialog-container">
+
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <input matInput placeholder="Step Name" formControlName="stepName"
+                                        value="Waiting for Owner Approval">
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <input matInput placeholder="Step Code" formControlName="stepCode"
+                                        value="waiting-owner-approval">
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <mat-select placeholder="Select Roles" class="frm-ctrl" formControlName="assignees"
+                                        multiple>
+                                        <mat-option *ngFor="let role of roles" [value]="role.roleCode">
+                                            {{ role.roleName }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-checkbox formControlName="isEmailRequired">is Email Required</mat-checkbox>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <textarea placeholder="Email Message" matInput formControlName="emailMessage"
+                                        rows="5"></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <mat-dialog-actions class="mat-dialog-footer" align="end">
+                            <button color="warn" type="button" mat-raised-button
+                                (click)="dialogRef.close()">Cancel</button>&nbsp;
+                            <button type="submit" color="primary" [disabled]="stepFrm.invalid" mat-raised-button>Save</button>
+                        </mat-dialog-actions>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Waiting for QC Approval</ng-template>
+            <mat-card style="width: 50%">
+                <mat-card-content class="card_cntnt">
+                    <form novalidate (ngSubmit)="onSubmit(stepFrm,'Waiting for QC Approval','waiting-qc-approval',11)" [formGroup]="stepFrm">
+                        <div mat-dialog-content class="md-dialog-container">
+
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <input matInput placeholder="Step Name" formControlName="stepName"
+                                        value="Waiting for QC Approval">
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <input matInput placeholder="Step Code" formControlName="stepCode"
+                                        value="waiting-qc-approval">
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <mat-select placeholder="Select Roles" class="frm-ctrl" formControlName="assignees"
+                                        multiple>
+                                        <mat-option *ngFor="let role of roles" [value]="role.roleCode">
+                                            {{ role.roleName }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-checkbox formControlName="isEmailRequired">is Email Required</mat-checkbox>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <textarea placeholder="Email Message" matInput formControlName="emailMessage"
+                                        rows="5"></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <mat-dialog-actions class="mat-dialog-footer" align="end">
+                            <button color="warn" type="button" mat-raised-button
+                                (click)="dialogRef.close()">Cancel</button>&nbsp;
+                            <button type="submit" color="primary" [disabled]="stepFrm.invalid" mat-raised-button>Save</button>
+                        </mat-dialog-actions>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Waiting for WM Approval</ng-template>
+            <mat-card style="width: 50%">
+                <mat-card-content class="card_cntnt">
+                    <form novalidate (ngSubmit)="onSubmit(stepFrm,'Waiting for WM Approval','waiting-wm-approval',12)" [formGroup]="stepFrm">
+                        <div mat-dialog-content class="md-dialog-container">
+
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <input matInput placeholder="Step Name" formControlName="stepName"
+                                        value="Waiting for WM Approval">
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <input matInput placeholder="Step Code" formControlName="stepCode"
+                                        value="waiting-wm-approval">
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <mat-select placeholder="Select Roles" class="frm-ctrl" formControlName="assignees"
+                                        multiple>
+                                        <mat-option *ngFor="let role of roles" [value]="role.roleCode">
+                                            {{ role.roleName }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-checkbox formControlName="isEmailRequired">is Email Required</mat-checkbox>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <textarea placeholder="Email Message" matInput formControlName="emailMessage"
+                                        rows="5"></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <mat-dialog-actions class="mat-dialog-footer" align="end">
+                            <button color="warn" type="button" mat-raised-button
+                                (click)="dialogRef.close()">Cancel</button>&nbsp;
+                            <button type="submit" color="primary" [disabled]="stepFrm.invalid" mat-raised-button>Save</button>
+                        </mat-dialog-actions>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Sign Off</ng-template>
+            <mat-card style="width: 50%">
+                <mat-card-content class="card_cntnt">
+                    <form novalidate (ngSubmit)="onSubmit(stepFrm,'Sign Off','sign-off',13)" [formGroup]="stepFrm">
+                        <div mat-dialog-content class="md-dialog-container">
+
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <input matInput placeholder="Step Name" formControlName="stepName"
+                                        value="Sign Off">
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <input matInput placeholder="Step Code" formControlName="stepCode"
+                                        value="sign-off">
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <mat-select placeholder="Select Roles" class="frm-ctrl" formControlName="assignees"
+                                        multiple>
+                                        <mat-option *ngFor="let role of roles" [value]="role.roleCode">
+                                            {{ role.roleName }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-checkbox formControlName="isEmailRequired">is Email Required</mat-checkbox>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="frm-ctrl">
+                                    <textarea placeholder="Email Message" matInput formControlName="emailMessage"
+                                        rows="5"></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <mat-dialog-actions class="mat-dialog-footer" align="end">
+                            <button color="warn" type="button" mat-raised-button
+                                (click)="dialogRef.close()">Cancel</button>&nbsp;
+                            <button type="submit" color="primary" [disabled]="stepFrm.invalid" mat-raised-button>Save</button>
+                        </mat-dialog-actions>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </mat-step>
+    </mat-vertical-stepper>
 </mat-card>
 
 <button [routerLink]="['../../admin']" mat-button color="primary">Back to Menu</button>

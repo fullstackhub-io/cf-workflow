@@ -32,4 +32,3 @@ RoleSchema.pre<IRoleModel>("save", function (next) {
 export const Role: Model<IRoleModel> = model<IRoleModel>("role", RoleSchema);
 
 
-
