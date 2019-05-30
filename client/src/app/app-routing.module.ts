@@ -5,6 +5,8 @@ import { RightListComponent } from './admin/right/right-list/right-list.componen
 import { RoleListComponent } from './admin/role/role-list/role-list.component';
 import { UserListComponent } from './admin/user/user-list/user-list.component';
 import { LoginComponent } from './login/login.component';
+import { WorkFlowComponent } from './admin/work-flow/work-flow.component';
+import { AdminMenuComponent } from './admin/admin-menu/admin-menu.component';
 
 const routes: Routes = [
   {
@@ -17,7 +19,15 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
+    path: 'admin/workflow',
+    component: WorkFlowComponent
+  },
+  {
     path: 'admin',
+    component: AdminMenuComponent
+  },
+  {
+    path: 'admin/index',
     component: IndexComponent
   },
   {

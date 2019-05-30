@@ -17,6 +17,8 @@ import { ConfirmDeleteComponent } from './shared/messages/confirm-delete/confirm
 import { ConfirmDeleteModal } from './shared/confirm-delete';
 import { IndexComponent } from './admin/index/index.component';
 import { LoginComponent } from './login/login.component';
+import { WorkFlowComponent } from './admin/work-flow/work-flow.component';
+import { AdminMenuComponent } from './admin/admin-menu/admin-menu.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { LoginComponent } from './login/login.component';
     ConfirmDeleteComponent,
     ConfirmDeleteModal,
     IndexComponent,
-    LoginComponent
+    LoginComponent,
+    WorkFlowComponent,
+    AdminMenuComponent
   ],
   imports: [
     BrowserModule,
