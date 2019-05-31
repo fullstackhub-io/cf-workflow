@@ -44,12 +44,3 @@ mat-card-content {
     padding-top: 20px;
     text-align: right;
 }
-
-::ng-deep .mat-horizontal-stepper-header-container {
-    border: solid 1px red; 
-  }
-  
-  ::ng-deep mat-stepper-horizontal, mat-stepper-horizontal {
-    border: dashed 1px blue; 
-    padding: 1em;
-  }
